@@ -57,8 +57,8 @@ namespace Lunchtime
 
         private void calendar_Initialized(object sender, EventArgs e)
         {
-            CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
-            calendar.BlackoutDates.Add(cdr);
+            //CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
+            //calendar.BlackoutDates.Add(cdr);
         }
 
 

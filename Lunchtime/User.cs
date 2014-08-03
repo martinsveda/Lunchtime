@@ -11,6 +11,8 @@ namespace Lunchtime
 {
     public class User
     {
+        private bool authenticated = false;
+        
         // username,email,access_rights,name, surname, passwd
         private string userName;
         public string UserName
@@ -47,10 +49,22 @@ namespace Lunchtime
         private string surname_name;
         public string Surname_Name
         {
-            get { return surname_name; }
-            set { surname_name = value; }
+            get { return surname + " " + name; }
         }
 
+        
+        // automaticky konstruktor
+        public User()
+        {
+            UserName = "";
+            AccessRights = -1;
+            Name = "";
+            Surname = "";
+            Password = "";
+            authenticated = false;
+        }
+
+        // konstruktor s parametry
         public User(string userName, int accessRights, string name, string surname, string password) 
         {
             UserName = userName;
@@ -58,7 +72,7 @@ namespace Lunchtime
             Name = name;
             Surname = surname;
             Password = password;
-            Surname_Name = surname + " " + name;
+            authenticated = false;
         }
 
     }

@@ -26,7 +26,7 @@ namespace Lunchtime
 
         private void cmdLoginCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void cmdLoginLogin_Click(object sender, RoutedEventArgs e)
@@ -40,7 +40,7 @@ namespace Lunchtime
                 return;
             }
 
-            MySqlDB connection = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
+            MySqlDB connection = new MySqlDB();
             if (connection.ValidateUser(username.Text, password.Password) != 1)
             {
                 MessageBox.Show("Authentication failed. Contact your admin to get access to Lunchtime.", "Authentication");

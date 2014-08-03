@@ -110,6 +110,16 @@ namespace Lunchtime
         }
 
 
+        // Method: Automatic Class constructor
+        //
+        // Description: It only stores SQL connection string into a private variable
+        //Return value: none
+        public MySqlDB()
+        {
+            connString = @"server=SVEDAMARTIN; database=lunchtime; User Id=martin; Password=martin";
+        }
+
+        
         // Method: Class constructor
         //
         // Description: It only stores SQL connection string into a private variable
@@ -120,15 +130,17 @@ namespace Lunchtime
         }
 
 
+
         // Method: ValidateUser
         //
         // Description: method connects to DB and searches for number of records with given credentials
         // Return value: return number of found records (0 - none found, 1 - user exists
-        public int ValidateUser(string user, string passwd) 
+        public int ValidateUser(string user, string passwd)
         {
             string sql_query = @"select count (*) from users where username='" + user + "'"; // and passwd='" + passwd + "'";
             return (int)ExecuteScalarQuery(sql_query);
         }
+
 
         public int SaveUserData(string user, string name, string surname, string passwd, string email, int access_rights)
         {

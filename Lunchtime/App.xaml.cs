@@ -13,13 +13,15 @@ namespace Lunchtime
     /// </summary>
     public partial class App : Application
     {
+        public User current_user = new User();
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            LoginWindow loginWindow = new LoginWindow();
+            MainWindow MainWindow = new MainWindow();
+            LoginWindow LoginWindow = new LoginWindow();
 
-            loginWindow.ShowDialog();
-            mainWindow.Show();
+            LoginWindow.ShowDialog();
+            MainWindow.Show();
         }
     }
 }
