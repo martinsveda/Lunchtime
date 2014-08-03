@@ -24,6 +24,7 @@ namespace Lunchtime
     /// </summary>
     public partial class MainWindow : Window
     {
+        public LoginWindow loginWindow;
         private List<User> users;
         private MySqlDB mysqldb = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
         private DateTime actualDate;
@@ -59,6 +60,7 @@ namespace Lunchtime
             CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
             calendar.BlackoutDates.Add(cdr);
         }
+
 
     }
 }

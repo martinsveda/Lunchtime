@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Lunchtime.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="LunchTime" Height="400" Width="700">
+        Title="LunchTime" Height="600" Width="700">
     
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -34,9 +34,8 @@
             <Button Name="btnShowUsers" Padding="3" Margin="5">Show users</Button>
             <Button Name="btnGetUsers" Padding="3" Margin="5" Click="btnGetUsers_Click">Get users</Button>
         </StackPanel>
-        <StackPanel Width="200" Orientation="Vertical" Margin="5">
-            <Calendar Name="calendar" SelectionMode="SingleDate" SelectedDatesChanged="calendar_SelectedDatesChanged" Initialized="calendar_Initialized"/>
-            <ListBox Name="lstUsers">
+        <StackPanel Width="200" Height="Auto" Orientation="Vertical" Margin="5">
+                        <ListBox Name="lstUsers">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="3" Text="{Binding Path=Surname_Name}"></TextBlock>
@@ -45,17 +44,24 @@
             </ListBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="5">
-                <GroupBox Name="monday" Header="Pondělí" Margin="2">
-                    <StackPanel Margin="5">
-                        <Label Padding="5">Polévka: Hovězí vývar s nudlemi</Label>
-                        <RadioButton Padding="3">1. Lorem ipsum lorem capso</RadioButton>
-                        <RadioButton Padding="3">2. Lorem ipsum lorem capso</RadioButton>
-                        <RadioButton Padding="3">3. Lorem ipsum lorem capsodddd</RadioButton>
-                        <RadioButton Padding="3">F. Lorem ipsum lorem capsodddd</RadioButton>
-                        <RadioButton Padding="3">V. Lorem ipsum lorem capsodddd</RadioButton>
-                    </StackPanel>
-                </GroupBox>
-                
+            <StackPanel Orientation="Horizontal">
+                <Calendar Name="calendar" SelectionMode="SingleDate" SelectedDatesChanged="calendar_SelectedDatesChanged" Initialized="calendar_Initialized"/>
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <Button Name="btnMakeOrder" Padding="5" Margin="5">Objednej oběd</Button>
+                    <Button Name="btnCancelOrder" Padding="5" Margin="5">Zruš volbu</Button>
+                </StackPanel>
+
+            </StackPanel>
+            <GroupBox Name="monday" Header="Pondělí" Margin="2">
+                <StackPanel Margin="10">
+                    <Label Padding="5">Polévka: Hovězí vývar s nudlemi</Label>
+                    <RadioButton Padding="5">1. Lorem ipsum lorem capso</RadioButton>
+                    <RadioButton Padding="5">2. Lorem ipsum lorem capso</RadioButton>
+                    <RadioButton Padding="5">3. Lorem ipsum lorem capsodddd</RadioButton>
+                    <RadioButton Padding="5">F. Lorem ipsum lorem capsodddd</RadioButton>
+                    <RadioButton Padding="5">V. Lorem ipsum lorem capsodddd</RadioButton>
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </DockPanel>
 </Window>

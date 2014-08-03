@@ -41,14 +41,11 @@ namespace Lunchtime
             }
 
             MySqlDB connection = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
-            if (connection.ValidateUser(username.Text, password.Password) == 1)
+            if (connection.ValidateUser(username.Text, password.Password) != 1)
             {
-                UserSettings user_settings_Window = new UserSettings();
-                user_settings_Window.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Authentication failed.", "Authentication");
+                MessageBox.Show("Authentication failed. Contact your admin to get access to Lunchtime.", "Authentication");
+                // O tomto si nejsem jisty, ze ma byt tady
+                Application.Current.Shutdown();
             }
 
             this.Close();
