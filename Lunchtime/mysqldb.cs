@@ -18,7 +18,7 @@ namespace Lunchtime
         //Return value: value returned by SQL query
         public object ExecuteScalarQuery(string query) 
         {
-            object ret = null;
+            object ret = null; 
 
             conn = new SqlConnection(connString);
             try
