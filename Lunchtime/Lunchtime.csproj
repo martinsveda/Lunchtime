@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AuthenticationService.cs" />
     <Compile Include="CustomIdentity.cs" />
     <Compile Include="CustomPrincipal.cs" />
     <Compile Include="DelegateCommand.cs" />
