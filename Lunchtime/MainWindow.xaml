@@ -32,7 +32,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="5" DockPanel.Dock="Bottom">
             <Button Name="btnShowUsers" Padding="3" Margin="5">Show users</Button>
-            <Button Name="btnGetUsers" Padding="3" Margin="5" Click="btnGetUsers_Click">Get users</Button>
+            <Button Name="btnGetUsers" Padding="3" Margin="5">Get users</Button>
         </StackPanel>
         <StackPanel Width="200" Height="Auto" Orientation="Vertical" Margin="5">
                         <ListBox Name="lstUsers">

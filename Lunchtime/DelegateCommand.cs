@@ -7,27 +7,36 @@ using System.Windows.Input;
 
 namespace Lunchtime
 {
-    class DelegateCommand : ICommand
+    public class DelegateCommand : ICommand
     {
-        private readonly Action _action;
+        private readonly Action<object> _execute;
+        private readonly Predicate<object> _canExecute;
 
-        public DelegateCommand(Action action)
+        public event EventHandler CanExecuteChanged;
+        
+        public DelegateCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            _action = action;
+            _execute = execute;
+            _canExecute = canExecute;
         }
 
         public void Execute(object parameter)
         {
-            _action();
+            _execute(parameter);
         }
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (_canExecute != null)
+                return true;
+            
+            return _canExecute(parameter);
         }
-#pragma warning disable 67
 
-        public event EventHandler CanExecuteChanged;
-#pragma warning restore 67
+        public void RaiseCanExecuteChanged()
+        {
+            if (CanExecuteChanged != null)
+                CanExecuteChanged(this, EventArgs.Empty);
+        }
     }
 }

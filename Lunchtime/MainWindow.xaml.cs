@@ -26,19 +26,12 @@ namespace Lunchtime
     {
         public LoginWindow loginWindow;
         private List<User> users;
-        private MySqlDB mysqldb = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
+        //private MySqlDB mysqldb = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
         private DateTime actualDate;
 
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void btnGetUsers_Click(object sender, RoutedEventArgs e)
-        {
-            users = mysqldb.GetUsers();
-            lstUsers.ItemsSource = users;
-
         }
 
 

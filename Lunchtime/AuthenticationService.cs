@@ -4,44 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Windows;
 
 
 namespace Lunchtime
 {
-    public interface IAuthenticationService
-    {
-        User AuthenticateUser(string username, string password);
-    }
-
-
-    public class User
-    {
-        public User(string username, string email, string[] roles)
-        {
-            Username = username;
-            Email = email;
-            Roles = roles;
-        }
-
-        public string Username
-        {
-            get;
-            set;
-        }
-
-        public string Email
-        {
-            get;
-            set;
-        }
-
-        public string[] Roles
-        {
-            get;
-            set;
-        }
-    }
-
 
     public class AuthenticationService : IAuthenticationService
     {
@@ -78,21 +45,37 @@ namespace Lunchtime
                 get ;
                 private set;
             }
-
-            public User AuthenticateUser(string username, string password)
-            {
-                return new User(string.Empty , string.Empty, null);
-            }
-
-            private string CalculateHash(string clearTextPassword, string salt)
-            {
-                byte[] saltedHashBytes = Encoding.UTF8.GetBytes(clearTextPassword + salt);
-                HashAlgorithm algorithm = new SHA256Managed();
-                byte[] hash = algorithm.ComputeHash(saltedHashBytes);
-
-                return Convert.ToBase64String(hash);
-            }
-
         }
+
+        /* dodelat napojeni na DB */
+        public User AuthenticateUser(string username, string password)
+        {
+            MySqlDB connection = new MySqlDB();
+
+            if (connection.ValidateUser(username, password) != 1)
+            {
+                return new User(username, string.Empty, null);
+            }
+            else
+            {
+                return new User(string.Empty, string.Empty, null);    
+            }
+            
+            
+        }
+
+
+        private string CalculateHash(string clearTextPassword, string salt)
+        {
+            byte[] saltedHashBytes = Encoding.UTF8.GetBytes(clearTextPassword + salt);
+            HashAlgorithm algorithm = new SHA256Managed();
+            byte[] hash = algorithm.ComputeHash(saltedHashBytes);
+
+            return Convert.ToBase64String(hash);
+        }
+
     }
 }
+
+
+

@@ -158,6 +158,7 @@ namespace Lunchtime
             return ret;
         }
 
+        /*
         public List<User> GetUsers()
         {
             MySqlDB MySqlDB = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
@@ -179,6 +180,7 @@ namespace Lunchtime
             }
             return users;
         }
+         */
 
 
 

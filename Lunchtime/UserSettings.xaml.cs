@@ -24,6 +24,7 @@ namespace Lunchtime
             InitializeComponent();
         }
 
+        /*
         private void cmdUserSettingsSave_Click(object sender, RoutedEventArgs e)
         {
            
@@ -50,6 +51,7 @@ namespace Lunchtime
         {
             this.Close();
         }
+         */
     }
 
 }

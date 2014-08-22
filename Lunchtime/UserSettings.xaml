@@ -44,9 +44,9 @@
             </ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                 <Button x:Name="cmdUserSettingsCancel" Grid.Row="8" Grid.Column="0" Width="100" Margin="20, 10, 10, 10" Padding="20, 5, 20, 5" 
-					VerticalAlignment="Center" Click="cmdUserSettingsCancel_Click" Content="Cancel"/>
+					VerticalAlignment="Center" Content="Cancel"/>
                 <Button x:Name="cmdUserSettingsSave" Grid.Row="8" Grid.Column="1" Width="100" Margin="10, 10, 20, 10" Padding="20, 5, 20, 5" 
-					VerticalAlignment="Center" Click="cmdUserSettingsSave_Click" Content="Save"/>
+					VerticalAlignment="Center" Content="Save"/>
             </StackPanel>
         </Grid>
     </GroupBox>
