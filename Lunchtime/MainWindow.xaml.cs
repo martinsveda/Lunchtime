@@ -19,20 +19,28 @@ using System.Globalization;
 
 namespace Lunchtime
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+
+    public partial class MainWindow : Window, IView
     {
-        public LoginWindow loginWindow;
-        private List<User> users;
         //private MySqlDB mysqldb = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
         private DateTime actualDate;
 
-        public MainWindow()
+        public MainWindow(MainViewModel mainViewModel)
         {
+            ViewModel = mainViewModel;
             InitializeComponent();
+
         }
+
+        #region IView members
+        public IViewModel ViewModel
+        {
+            get { return DataContext as IViewModel; }
+            set { DataContext = value; }
+        }
+        #endregion
+
+
 
 
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

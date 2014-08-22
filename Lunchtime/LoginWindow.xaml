@@ -18,10 +18,8 @@
             <Label Grid.Row="1" Grid.Column="0" Margin="20, 10, 20, 10" VerticalAlignment="Center">Password:</Label>
             <PasswordBox x:Name="passwordBox" Grid.Row="1" Grid.Column="1" Margin="20, 10, 20, 10" VerticalAlignment="Center" Width="Auto"></PasswordBox>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                <!--
-                <Button Name="cmdLoginCancel" Grid.Row="3" Grid.Column="0" Width="100" Margin="20, 20, 10, 10" 
+                <Button Command="{Binding CancelCommand}" Grid.Row="3" Grid.Column="0" Width="100" Margin="20, 20, 10, 10" 
                         Padding="20, 5, 20, 5" VerticalAlignment="Bottom">Cancel</Button>
-                -->
                 <Button Command="{Binding LoginCommand, Mode=OneTime}" CommandParameter="{Binding ElementName=passwordBox}" 
                         Grid.Row="3" Grid.Column="1" Width="100" Margin="10, 20, 20, 10" Padding="20, 5, 20, 5" VerticalAlignment="Bottom">Log in</Button>
             </StackPanel>

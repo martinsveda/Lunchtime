@@ -5,6 +5,7 @@ using System.Windows;
 
 namespace Lunchtime
 {
+
     public interface IView
     {
         IViewModel ViewModel
@@ -18,13 +19,9 @@ namespace Lunchtime
     }
 
     
-    
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window, IView
     {
-        public LoginWindow(MainViewModel viewModel)
+        public LoginWindow(AuthenticationViewModel viewModel)
         {
             ViewModel = viewModel;
             InitializeComponent();

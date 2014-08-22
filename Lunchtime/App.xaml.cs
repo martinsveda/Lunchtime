@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Threading;
 
 namespace Lunchtime
 {
@@ -22,21 +23,34 @@ namespace Lunchtime
 
             base.OnStartup(e);
             // Show login window
-            MainViewModel viewModel = new MainViewModel(new AuthenticationService());
+            AuthenticationViewModel authViewModel = new AuthenticationViewModel(new AuthenticationService());
             
-            IView loginWindow = new LoginWindow(viewModel);
-            loginWindow.ShowDialog();
+            IView loginWindow = new LoginWindow(authViewModel);
+            MainViewModel mainViewModel = new MainViewModel();
+            IView mainWindow = new MainWindow(mainViewModel);
 
+            
+            loginWindow.ShowDialog();
+            mainWindow.Show();
+
+            
+            mainViewModel.Status = "Logged as: " + Thread.CurrentPrincipal.Identity.Name;
+
+
+/*            
             if (customPrincipal.Identity.Name != string.Empty)
             {
-                // close the window!!!
-                ;
+                App.Current.Shutdown();
             }
+            else
+            {
+                MainViewModel mainViewModel = new MainViewModel();
+                IView mainWindow = new MainWindow(mainViewModel);
 
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
-        }
-        
+                mainWindow.Show();
+            }
+*/
+        }      
         /*
         public User current_user = new User();
 

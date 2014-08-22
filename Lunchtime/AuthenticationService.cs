@@ -60,8 +60,6 @@ namespace Lunchtime
             {
                 return new User(string.Empty, string.Empty, null);    
             }
-            
-            
         }
 
 

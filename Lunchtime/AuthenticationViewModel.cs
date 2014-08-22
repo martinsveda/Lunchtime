@@ -14,7 +14,7 @@ namespace Lunchtime
 {
     public interface IViewModel { }
 
-    public class MainViewModel : IViewModel, INotifyPropertyChanged
+    public class AuthenticationViewModel : IViewModel, INotifyPropertyChanged
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly DelegateCommand _loginCommand;
@@ -23,7 +23,7 @@ namespace Lunchtime
         private string _username;
         private string _status;
 
-        public MainViewModel(IAuthenticationService authenticationService)
+        public AuthenticationViewModel(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
             _loginCommand = new DelegateCommand(Login, CanLogin);
@@ -117,16 +117,7 @@ namespace Lunchtime
 
         private void Cancel(object parameter)
         {
-            CustomPrincipal customPrincipal = Thread.CurrentPrincipal as CustomPrincipal;
-            if (customPrincipal != null)
-            {
-                customPrincipal.Identity = new AnonymousIdentity();
-                NotifyPropertyChanged("AuthenticatedUser");
-                NotifyPropertyChanged("IsAuthenticated");
-                _loginCommand.RaiseCanExecuteChanged();
-                _cancelCommand.RaiseCanExecuteChanged();
-                Status = string.Empty;
-            }
+            App.Current.Shutdown();
         }
 
         private bool CanCancel(object parameter)
