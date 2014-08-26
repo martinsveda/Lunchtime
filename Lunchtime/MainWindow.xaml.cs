@@ -16,14 +16,14 @@ using System.Data.SqlClient;
 using System.Globalization;
 
 
-
 namespace Lunchtime
 {
-
     public partial class MainWindow : Window, IView
     {
         //private MySqlDB mysqldb = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
         private DateTime actualDate;
+
+        public Action CloseAction { get; set; }
 
         public MainWindow(MainViewModel mainViewModel)
         {
@@ -40,9 +40,6 @@ namespace Lunchtime
         }
         #endregion
 
-
-
-
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             CultureInfo culture = CultureInfo.CurrentCulture;
@@ -53,7 +50,6 @@ namespace Lunchtime
                 actualDate = actualDate.AddDays(-1);
 
             lblActualDate.Text = actualDate.ToShortDateString();
-
         }
 
         private void calendar_Initialized(object sender, EventArgs e)
@@ -61,7 +57,5 @@ namespace Lunchtime
             //CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
             //calendar.BlackoutDates.Add(cdr);
         }
-
-
     }
 }

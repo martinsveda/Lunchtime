@@ -5,7 +5,6 @@ using System.Windows;
 
 namespace Lunchtime
 {
-
     public interface IView
     {
         IViewModel ViewModel
@@ -16,12 +15,15 @@ namespace Lunchtime
 
         void Show();
         Nullable<bool> ShowDialog();
+        Action CloseAction { get; set; }
     }
 
     
     public partial class LoginWindow : Window, IView
     {
-        public LoginWindow(AuthenticationViewModel viewModel)
+        public Action CloseAction { get; set; }
+
+        public LoginWindow(LoginViewModel viewModel)
         {
             ViewModel = viewModel;
             InitializeComponent();
@@ -35,30 +37,9 @@ namespace Lunchtime
         }
         #endregion
 
-
-
-        /*        
-        private void cmdLoginLogin_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            username.Text = username.Text.Trim();           // remove white space characters
-            password.Password = password.Password.Trim();
-
-            if ((username.Text == "") || (password.Password == ""))
-            {
-                MessageBox.Show("Insert credentials!", "Login to lunchtime");
-                return;
-            }
-
-            MySqlDB connection = new MySqlDB();
-            if (connection.ValidateUser(username.Text, password.Password) != 1)
-            {
-                MessageBox.Show("Authentication failed. Contact your admin to get access to Lunchtime.", "Authentication");
-                // O tomto si nejsem jisty, ze ma byt tady
-                Application.Current.Shutdown();
-            }
-
             this.Close();
         }
- */
     }
 }

@@ -14,16 +14,15 @@ namespace Lunchtime
 {
     public interface IViewModel { }
 
-    public class AuthenticationViewModel : IViewModel, INotifyPropertyChanged
+    public class LoginViewModel : IViewModel, INotifyPropertyChanged
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly DelegateCommand _loginCommand;
         private readonly DelegateCommand _cancelCommand;
         
         private string _username;
-        private string _status;
 
-        public AuthenticationViewModel(IAuthenticationService authenticationService)
+        public LoginViewModel(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
             _loginCommand = new DelegateCommand(Login, CanLogin);
@@ -31,6 +30,9 @@ namespace Lunchtime
         }
 
         #region Properties
+
+        public Action CloseAction { get; set; }
+
         public string Username
         {
             get { return _username; }
@@ -50,11 +52,6 @@ namespace Lunchtime
             }
         }
 
-        public string Status
-        {
-            get { return _status; }
-            set { _status = value; NotifyPropertyChanged("Status"); }
-        }
         #endregion
 
         #region Commands
@@ -80,6 +77,7 @@ namespace Lunchtime
             try
             {
                 // Validate user through validation service (db)
+                clearTextPassword = clearTextPassword.Trim();
                 User user = _authenticationService.AuthenticateUser(Username, clearTextPassword);
 
                 //Get current principal object
@@ -97,15 +95,10 @@ namespace Lunchtime
                 _cancelCommand.RaiseCanExecuteChanged();
                 Username = string.Empty;
                 passwordBox.Password = string.Empty;
-                Status = string.Empty;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                Status = "Login failed!";
             }
             catch (Exception ex)
             {
-                Status = string.Format("Error: {0}", ex.Message);
+                ;
             }
         }
 

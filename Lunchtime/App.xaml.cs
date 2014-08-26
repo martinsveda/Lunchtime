@@ -23,45 +23,17 @@ namespace Lunchtime
 
             base.OnStartup(e);
             // Show login window
-            AuthenticationViewModel authViewModel = new AuthenticationViewModel(new AuthenticationService());
-            
+            LoginViewModel authViewModel = new LoginViewModel(new AuthenticationService());
             IView loginWindow = new LoginWindow(authViewModel);
+
             MainViewModel mainViewModel = new MainViewModel();
             IView mainWindow = new MainWindow(mainViewModel);
 
-            
             loginWindow.ShowDialog();
+
             mainWindow.Show();
 
             
-            mainViewModel.Status = "Logged as: " + Thread.CurrentPrincipal.Identity.Name;
-
-
-/*            
-            if (customPrincipal.Identity.Name != string.Empty)
-            {
-                App.Current.Shutdown();
-            }
-            else
-            {
-                MainViewModel mainViewModel = new MainViewModel();
-                IView mainWindow = new MainWindow(mainViewModel);
-
-                mainWindow.Show();
-            }
-*/
         }      
-        /*
-        public User current_user = new User();
-
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            MainWindow MainWindow = new MainWindow();
-            LoginWindow LoginWindow = new LoginWindow();
-
-            LoginWindow.ShowDialog();
-            MainWindow.Show();
-        }
-        */
     }
 }

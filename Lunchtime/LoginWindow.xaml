@@ -21,7 +21,7 @@
                 <Button Command="{Binding CancelCommand}" Grid.Row="3" Grid.Column="0" Width="100" Margin="20, 20, 10, 10" 
                         Padding="20, 5, 20, 5" VerticalAlignment="Bottom">Cancel</Button>
                 <Button Command="{Binding LoginCommand, Mode=OneTime}" CommandParameter="{Binding ElementName=passwordBox}" 
-                        Grid.Row="3" Grid.Column="1" Width="100" Margin="10, 20, 20, 10" Padding="20, 5, 20, 5" VerticalAlignment="Bottom">Log in</Button>
+                        Grid.Row="3" Grid.Column="1" Width="100" Margin="10, 20, 20, 10" Padding="20, 5, 20, 5" VerticalAlignment="Bottom" Click="Button_Click">Log in</Button>
             </StackPanel>
         </Grid>
     </GroupBox>

@@ -16,10 +16,7 @@ namespace Lunchtime
                 
         private string _status;
 
-        public MainViewModel()
-        {
-            Status = "Logged as: " + Thread.CurrentPrincipal.Identity.Name;
-        }
+        public MainViewModel() {}
 
         #region Properties
 

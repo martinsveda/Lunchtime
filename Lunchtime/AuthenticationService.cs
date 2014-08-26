@@ -52,7 +52,7 @@ namespace Lunchtime
         {
             MySqlDB connection = new MySqlDB();
 
-            if (connection.ValidateUser(username, password) != 1)
+            if (connection.ValidateUser(username, password) == 1)
             {
                 return new User(username, string.Empty, null);
             }

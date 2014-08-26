@@ -82,7 +82,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AuthenticationService.cs" />
-    <Compile Include="AuthenticationViewModel.cs" />
+    <Compile Include="LoginViewModel.cs" />
     <Compile Include="CustomIdentity.cs" />
     <Compile Include="CustomPrincipal.cs" />
     <Compile Include="DelegateCommand.cs" />

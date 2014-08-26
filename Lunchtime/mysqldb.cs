@@ -137,8 +137,11 @@ namespace Lunchtime
         // Return value: return number of found records (0 - none found, 1 - user exists
         public int ValidateUser(string user, string passwd)
         {
+            int pom;
+
             string sql_query = @"select count (*) from users where username='" + user + "'"; // and passwd='" + passwd + "'";
-            return (int)ExecuteScalarQuery(sql_query);
+            pom = (int)ExecuteScalarQuery(sql_query);
+            return pom;
         }
 
 
