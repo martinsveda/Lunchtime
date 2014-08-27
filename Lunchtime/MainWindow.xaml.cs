@@ -57,5 +57,6 @@ namespace Lunchtime
             //CalendarDateRange cdr = new CalendarDateRange(DateTime.MinValue, DateTime.Today);
             //calendar.BlackoutDates.Add(cdr);
         }
+
     }
 }

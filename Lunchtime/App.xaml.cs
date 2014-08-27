@@ -29,9 +29,12 @@ namespace Lunchtime
             MainViewModel mainViewModel = new MainViewModel();
             IView mainWindow = new MainWindow(mainViewModel);
 
+
             loginWindow.ShowDialog();
 
             mainWindow.Show();
+
+            mainViewModel.Status = AppDomain.CurrentDomain.
 
             
         }      

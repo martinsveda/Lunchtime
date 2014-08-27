@@ -15,7 +15,6 @@ namespace Lunchtime
 
         void Show();
         Nullable<bool> ShowDialog();
-        Action CloseAction { get; set; }
     }
 
     
