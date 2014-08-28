@@ -43,7 +43,7 @@ namespace Lunchtime
 
             mainWindow.Show();
 
-            mainViewModel.Status = AppDomain.CurrentDomain.
+            mainViewModel.Status = AppDomain.CurrentDomain.lll
 
             
         }      
