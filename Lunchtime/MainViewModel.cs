@@ -16,7 +16,9 @@ namespace Lunchtime
                 
         private string _status;
 
-        public MainViewModel() {}
+        public MainViewModel()
+        {
+        }
 
         #region Properties
 

@@ -38,12 +38,21 @@ namespace Lunchtime
             MainViewModel mainViewModel = new MainViewModel();
             IView mainWindow = new MainWindow(mainViewModel);
 
-
             loginWindow.ShowDialog();
 
-            mainWindow.Show();
+            if (Thread.CurrentPrincipal.Identity.Name == "root")
+            {
+                ;
+            }
+            else
+            {
+                mainWindow.UserStackPanel.Visibility = Visibility.Collapsed;
+            }
 
-            mainViewModel.Status = AppDomain.CurrentDomain.lll
+
+
+            mainWindow.Show();
+            mainViewModel.Status = "Logged as: " + Thread.CurrentPrincipal.Identity.Name;
 
             
         }      
