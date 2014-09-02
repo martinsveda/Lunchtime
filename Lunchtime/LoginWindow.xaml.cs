@@ -1,44 +1,48 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
-
+using System.Windows.Controls;
 
 
 namespace Lunchtime
 {
-    public interface IView
+
+  
+    public partial class LoginWindow : Window
     {
-        IViewModel ViewModel
+
+        public LoginWindow()
         {
-            get;
-            set;
-        }
-
-        void Show();
-        Nullable<bool> ShowDialog();
-    }
-
-    
-    public partial class LoginWindow : Window, IView
-    {
-        public Action CloseAction { get; set; }
-
-        public LoginWindow(LoginViewModel viewModel)
-        {
-            ViewModel = viewModel;
             InitializeComponent();
         }
 
-        #region IView members
-        public IViewModel ViewModel
-        {
-            get { return DataContext as IViewModel; }
-            set { DataContext = value; }
-        }
-        #endregion
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            IAuthenticationService authenticationService = new AuthenticationService();
+
+            try
+            {
+                // Validate user through validation service (db)
+                User user = authenticationService.AuthenticateUser(username.Text, passwordBox.Password);
+
+                //Get current principal object
+                CustomPrincipal customPrinciplal = Thread.CurrentPrincipal as CustomPrincipal;
+                if (customPrinciplal == null)
+                    throw new ArgumentException("Set the default CustomPrincipal at start-up!");
+
+                // Authenticate user
+                customPrinciplal.Identity = new CustomIdentity(user.Username, user.Email, user.Roles);
+
+                username.Text = string.Empty;
+                passwordBox.Password = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                ;
+            }
+            
+            this.Close(); // Close the Login window
         }
     }
 }

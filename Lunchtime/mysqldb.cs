@@ -135,13 +135,24 @@ namespace Lunchtime
         //
         // Description: method connects to DB and searches for number of records with given credentials
         // Return value: return number of found records (0 - none found, 1 - user exists
-        public int ValidateUser(string user, string passwd)
+        public User ValidateUser(string user, string passwd)
         {
-            int pom;
+            SqlDataReader reader = null;
+            string sql_query = @"select * from users where username='" + user + "'and passwd='" + passwd + "'";
 
-            string sql_query = @"select count (*) from users where username='" + user + "'"; // and passwd='" + passwd + "'";
-            pom = (int)ExecuteScalarQuery(sql_query);
-            return pom;
+            reader = (SqlDataReader)this.ExecuteReaderQuery(sql_query);
+
+            if (reader.HasRows)
+            {
+                // There are more than one user with the same credentials - possible fault?
+                return new User(string.Empty, string.Empty, null, string.Empty, string.Empty, string.Empty);
+            }
+            else
+            {
+                reader.Read();
+                return new User((string)reader["username"], (string)reader["email"], null, (string)reader["name"], 
+                                (string)reader["surname"], (string)reader["passwd"]);
+            }
         }
 
 

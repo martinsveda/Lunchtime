@@ -14,31 +14,21 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Globalization;
-
+using System.Threading;
 
 namespace Lunchtime
 {
-    public partial class MainWindow : Window, IView
+    public partial class MainWindow : Window
     {
         //private MySqlDB mysqldb = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
         private DateTime actualDate;
 
-        public Action CloseAction { get; set; }
 
-        public MainWindow(MainViewModel mainViewModel)
+        public MainWindow()
         {
-            ViewModel = mainViewModel;
             InitializeComponent();
-
         }
 
-        #region IView members
-        public IViewModel ViewModel
-        {
-            get { return DataContext as IViewModel; }
-            set { DataContext = value; }
-        }
-        #endregion
 
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -49,7 +39,7 @@ namespace Lunchtime
             while (actualDate.DayOfWeek != firstDay)
                 actualDate = actualDate.AddDays(-1);
 
-            lblActualDate.Text = actualDate.ToShortDateString();
+            //lblActualDate.Text = actualDate.ToShortDateString();
         }
 
         private void calendar_Initialized(object sender, EventArgs e)

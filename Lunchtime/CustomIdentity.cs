@@ -16,9 +16,11 @@ namespace Lunchtime
             Roles = roles;
         }
 
+        #region IIdentity properties
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string[] Roles { get; private set; }
+        #endregion
 
         #region IIdentity members
         public string AuthenticationType { get { return "Custom authentication"; } }
@@ -26,10 +28,9 @@ namespace Lunchtime
         #endregion
     }
 
-
     class AnonymousIdentity : CustomIdentity
     {
-        public AnonymousIdentity() : base(string.Empty, string.Empty, new string[] { })
+        public AnonymousIdentity() : base(string.Empty, string.Empty, null)
         {
             ;
         }

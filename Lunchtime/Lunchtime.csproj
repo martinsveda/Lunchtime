@@ -82,14 +82,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AuthenticationService.cs" />
-    <Compile Include="LoginViewModel.cs" />
     <Compile Include="CustomIdentity.cs" />
     <Compile Include="CustomPrincipal.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserSettings.xaml.cs">

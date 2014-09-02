@@ -12,54 +12,12 @@ namespace Lunchtime
 
     public class AuthenticationService : IAuthenticationService
     {
-        private class InternalUserData
-        {
-            public InternalUserData(string username, string email, string hashedPassword, string[] roles)
-            {
-                Username = username;
-                Email = email;
-                HashedPassword = hashedPassword;
-                Roles = roles;
-            }
-
-            public string Username
-            {
-                get ;
-                private set;
-            }
-
-            public string Email
-            {
-                get;
-                private set;
-            }
-
-            public string HashedPassword
-            {
-                get;
-                private set;
-            }
-
-            public string[] Roles
-            {
-                get ;
-                private set;
-            }
-        }
 
         /* dodelat napojeni na DB */
         public User AuthenticateUser(string username, string password)
         {
-            MySqlDB connection = new MySqlDB();
-
-            if (connection.ValidateUser(username, password) == 1)
-            {
-                return new User(username, string.Empty, null);
-            }
-            else
-            {
-                return new User(string.Empty, string.Empty, null);    
-            }
+            MySqlDB connection = new MySqlDB("SVEDAMARTIN", "lunchtime", "martin", "martin");
+            return connection.ValidateUser(username, password);
         }
 
 
@@ -71,7 +29,6 @@ namespace Lunchtime
 
             return Convert.ToBase64String(hash);
         }
-
     }
 }
 

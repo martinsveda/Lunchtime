@@ -25,36 +25,24 @@ namespace Lunchtime
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            LoginWindow loginWindow = new LoginWindow();
+            MainWindow mainWindow = new MainWindow();
+
             // Create a custom principal with an anonymous identity on start up
             CustomPrincipal customPrincipal= new CustomPrincipal();
+
             AppDomain.CurrentDomain.SetThreadPrincipal(customPrincipal);
-
-
-            base.OnStartup(e);
+            //base.OnStartup(e);
             // Show login window
-            LoginViewModel authViewModel = new LoginViewModel(new AuthenticationService());
-            IView loginWindow = new LoginWindow(authViewModel);
-
-            MainViewModel mainViewModel = new MainViewModel();
-            IView mainWindow = new MainWindow(mainViewModel);
+            
 
             loginWindow.ShowDialog();
 
-            if (Thread.CurrentPrincipal.Identity.Name == "root")
-            {
-                ;
-            }
-            else
-            {
-                mainWindow.UserStackPanel.Visibility = Visibility.Collapsed;
-            }
-
-
-
-            mainWindow.Show();
-            mainViewModel.Status = "Logged as: " + Thread.CurrentPrincipal.Identity.Name;
-
             
+            mainWindow.Show();
+
+
+            mainWindow.lblLogin.Text = "Logged as: " + Thread.CurrentPrincipal.Identity.Name;
         }      
     }
 }
